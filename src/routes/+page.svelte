@@ -14,10 +14,6 @@
       background-color: #f3a732;
       flex-direction: column;
   }
-  :global(.svlt-grid-shadow) {
-    border-radius: 7px;
-    background: transparent!important;
-  }
   .grid-container { 
 			display: grid;
 			grid-template-columns: 275px auto;
@@ -61,6 +57,45 @@
   form {
     flex-direction: column;
   }
+  .cards {
+		flex-direction: column;
+    border-radius: 10px;
+    flex-direction: column;
+	}
+  .card {
+    background-color: #f3a732;
+    border-width: 2px;
+    border-color: black;
+  }
+  .column {
+    min-width: 25ch;
+    height: 675px;
+    /* border-color: black; */
+    /* margin: 5px 5px 5px 5px; */
+  }
+  ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		gap: 1rem;
+	}
+	li {
+		padding: 1rem;
+		background-color: var(--sk-back-1);
+		border: 1px solid black;
+		border-radius: 0.5rem;
+		border-color: transparent;
+    border-width: 1.5px;
+	}
+  .column:global(.droppable) {
+		outline-offset: 0.25rem;
+	}
+
+	.column:global(.droppable) * {
+		pointer-events: none;
+	}
+
 </style>
 
 kippu
@@ -116,48 +151,53 @@ kippu
     </form>
   </div>
   <div class=demo-container>
-    <Grid bind:items={items} fillSpace=false rowHeight={100} let:item let:dataItem {cols}>
-      <div class=demo-widget>
-        <h3>{dataItem.name}</h3>
-        <p>{dataItem.location}</p>
-        <span on:pointerdown={e => e.stopPropagation()}
-          on:click={() => remove(dataItem)}
-          class=remove
-          >
-          ✕
-        </span>
-      </div>
-    </Grid>
+    <ul>
+      {#each data.columns as column}
+        {@const cards = data.cards.filter((c) => c.column === column.id)}
+        <li
+          class="column"
+          use:dropzone={{
+            on_dropzone(card_id) {
+              const card = data.cards.find((c) => c.id === card_id);
+              card.column = column.id;
+              data = data;
+            }
+          }}
+        >
+          <h2>{column.label}</h2>
+          {#if cards.length > 0}
+            <ul class="cards">
+              {#each cards as card}
+                <li class="card" use:draggable={card.id}>
+                  {card.title}
+                </li>
+              {/each}
+            </ul>
+          {/if}
+        </li>
+      {/each}
+    </ul>
   </div>
   
 </div>
 <script lang="ts">
-import Grid from "svelte-grid";
-import gridHelp from "svelte-grid/build/helper/index.mjs";
-import "../styles/app.css";
+  // import "../styles/app.css";
+  import {draggable, dropzone} from "$lib/dnd"
+  export let data
+  // import './global.css';
 
 let title: string;
 let location: string;
 let cost: number;
 let depends: JSON;
 let constraints: JSON;
-const COLS = 7;
 
 const id = () => "_" + Math.random().toString(36).substr(2, 9);
 
 let items = [];
 
-const cols = [[1100, 7]];
-
 function add(name, location, cost, depends, constraints) {
   let newItem = {
-    7: gridHelp.item({
-      w: 1,
-      h: 1,
-      x: 0,
-      y: 0,
-      resizable: false,
-    }),
     id: id(),
     name: name,
     location: location,
@@ -165,17 +205,8 @@ function add(name, location, cost, depends, constraints) {
     depends: depends,
     constraints: constraints,
   };
-  
-  let findOutPosition = gridHelp.findSpace(newItem, items, COLS);
+  return newItem
 
-  newItem = {
-    ...newItem,
-    [COLS]: {
-      ...newItem[COLS],
-      ...findOutPosition,
-    },
-  };
-  items = [...items, ...[newItem]];
 }
 
 const remove = (item) => {
@@ -184,7 +215,7 @@ const remove = (item) => {
 };
 
 function handleOnSubmit() {
-  add(title, location, cost)
+  add(title, location, cost, depends, constraints)
 }
 let adjustAfterRemove = false;
 </script>
