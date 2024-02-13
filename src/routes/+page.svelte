@@ -66,9 +66,10 @@
     background-color: #f3a732;
     border-width: 2px;
     border-color: black;
+    min-height: 10px;
   }
   .column {
-    min-width: 25ch;
+    width: 25ch;
     height: 675px;
     /* border-color: black; */
     /* margin: 5px 5px 5px 5px; */
@@ -166,7 +167,7 @@ kippu
         >
           <h2>{column.label}</h2>
           {#if cards.length > 0}
-            <ul class="cards">
+            <ul class="cards" >
               {#each cards as card}
                 <li class="card" use:draggable={card.id}>
                   {card.title}
