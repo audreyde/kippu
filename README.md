@@ -1,1 +1,1 @@
-A simple event planning tool
+A simple travel planning tool
