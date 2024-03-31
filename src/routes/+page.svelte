@@ -90,13 +90,15 @@
         float: left;
         /*Notice we make sure this container doesn't scroll so that the title stays on top and the dndzone inside is scrollable*/
         overflow-y: hidden;
+        border-color: None;
     }
   .column-content {
         height: 100%;
         /* Notice that the scroll container needs to be the dndzone if you want dragging near the edge to trigger scrolling */
         overflow-y: scroll;
-        
+        outline: None;
     }
+
   ul {
 		list-style: none;
 		margin: 0;
@@ -122,6 +124,7 @@
   .new {
     padding-top: 65px;
   }
+
   /* .column:global(.droppable) {
 		outline-offset: 0.25rem;
 	}
