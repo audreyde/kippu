@@ -1,1 +1,1 @@
-this is the readme
+A simple event planning tool
