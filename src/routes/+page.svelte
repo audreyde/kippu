@@ -118,6 +118,10 @@
   .column-title {
     padding-left: 10px;
   }
+
+  .new {
+    padding-top: 65px;
+  }
   /* .column:global(.droppable) {
 		outline-offset: 0.25rem;
 	}
