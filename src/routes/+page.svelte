@@ -288,11 +288,13 @@ function add(name: string, location, cost, depends, constraints) {
     // depends: depends,
     // constraints: constraints,
   };
-  console.log(newItem)
-  // console.log(columnItems[1][items])
-  columnItems[0].items.push(newItem);
-  columnItems = [...columnItems];
-  console.log(columnItems)
+  if (newItem.name === undefined || newItem.name === "") {
+    alert("needs a name!")
+  }
+  else {
+    columnItems[0].items.push(newItem);
+    columnItems = [...columnItems];
+  }
 } 
 
 const remove = (item) => {
