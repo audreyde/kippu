@@ -1,5 +1,8 @@
 kippu: a simple travel planning tool.
 
+## Preview
+
+
 ## Installation
 `git clone git@github.com:audreyde/kippu.git`
 
@@ -13,4 +16,5 @@ Additionally, this project presents me with an opportunity to learn Svelte, as w
 
 ## Tech
 - [TypeScript](https://www.typescriptlang.org/) + [Svelte](https://svelte.dev/)
+- [svelte-dnd-action](https://www.npmjs.com/package/svelte-dnd-action)
 - [Vite](https://vitejs.dev/)

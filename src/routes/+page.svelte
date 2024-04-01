@@ -14,7 +14,7 @@
 			display: grid;
 			grid-template-columns: 275px auto;
 	}
-  
+
   h2 {
     margin: 0px 5px 0px 0px;
     padding-left: 5px;
@@ -228,19 +228,29 @@ function handleClick(e) {
 
 const id = () => Math.random()
 
-
+/**
+ * Converts form contents into a new activity and adds it to the first column.
+ * 
+ * @param name - the name of the activity
+ * @param location - activity location
+ * @param cost - cost of the activity
+ * @param depends - other activities that affect this activity
+ * @param constraints - additional constraints on this activity (e.g. time, weather, etc.)
+ */
 function add(name: string, location, cost, depends, constraints) {
   let newItem = {
     id: id(),
     name: name,
-    // location: location,
-    // cost: cost,
-    // depends: depends,
-    // constraints: constraints,
+    location: location,
+    cost: cost,
+    depends: depends,
+    constraints: constraints,
   };
+  // Don't allow nameless activities to be created
   if (newItem.name === undefined || newItem.name === "") {
     alert("needs a name!")
   }
+  // Add the new activity to column
   else {
     columnItems[0].items.push(newItem);
     columnItems = [...columnItems];
