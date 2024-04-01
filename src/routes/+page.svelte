@@ -9,42 +9,40 @@
   :global(body) {
     background-color: #f3e7e8;
   }
+
   .grid-container { 
 			display: grid;
 			grid-template-columns: 275px auto;
 	}
+  
   h2 {
     margin: 0px 5px 0px 0px;
     padding-left: 5px;
     font-family: Arial, Helvetica, sans-serif;
   }
+
   p {
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
   }
-  .demo-widget {
-    padding: 20px 0px 0px 10px;
-  }
+
   input[type=text]{
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
      border-radius: 20px;
      border: 1.5px solid #000000;
-     /* border: none; */
      color: #393939;
      width: 250px;
      height: 30px;
      padding-left: 10px;
      margin: 10px;
      flex-direction: column;
-     /* box-shadow: inset -5px 5px 9px #cfc4c5,
-            inset 5px -5px 9px #ffffff; */
   }
+
   button {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
      border-radius: 20px;
-     /* border: 1px solid #000000; */
      color: #f3a732;
      width: 264px;
      height: 30px;
@@ -54,18 +52,13 @@
      background: white;
      border: none;
      cursor: pointer;
-     /* box-shadow: -5px 5px 16px #aaa2a2,
-             5px -5px 16px #ffffff; */
   }
+
   form {
     flex-direction: column;
     margin-top: 20px;
   }
-  .cards {
-		flex-direction: column;
-    border-radius: 10px;
-    flex-direction: column;
-	}
+  
   .card {
     background-color: #f3a732;
     border-width: 2px;
@@ -76,12 +69,7 @@
     border-radius: 20px;
     font-family: Arial, Helvetica, sans-serif;
   }
-  /* .column {
-    width: 25ch;
-    height: 675px;
-    /* border-color: black; */
-    /* margin: 5px 5px 5px 5px; */
-  /* } */
+  
   .column {
         height: 100%;
         width: 250px;
@@ -99,24 +87,10 @@
         outline: None;
     }
 
-  ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		gap: 1rem;
-	}
-	li {
-		padding: 1rem;
-		background-color: var(--sk-back-1);
-		border: 1px solid black;
-		border-radius: 0.5rem;
-		border-color: transparent;
-    border-width: 1.5px;
-	}
   div {
     font-family: Arial, Helvetica, sans-serif;
   }
+
   .column-title {
     padding-left: 10px;
   }
@@ -125,30 +99,8 @@
     padding-top: 65px;
   }
 
-  /* .column:global(.droppable) {
-		outline-offset: 0.25rem;
-	}
-
-	.column:global(.droppable) * {
-		pointer-events: none;
-	} */
-
-  /* section {
-        width: 50%;
-        padding: 0.3em;
-        border: 1px solid black;
-        /* this will allow the dragged element to scroll the list */
-        /* overflow: scroll;
-        height: 200px; */
-    /* }
-    div {
-        width: 50%;
-        padding: 0.2em;
-        border: 1px solid blue;
-        margin: 0.15em 0;
-    } */
-    .column-content:global(.hovered) {
-      border-color: transparent;
+  .column-content:global(.hovered) {
+    border-color: transparent;
   }
 
 </style>
@@ -221,18 +173,9 @@
     {/each}
 </section>
 </div>  
-<!-- <section use:dndzone="{{items, flipDurationMs}}" on:consider="{handleDndConsider}" on:finalize="{handleDndFinalize}">
-  {#each items as item(item.id)}
-  <div animate:flip="{{duration: flipDurationMs}}">{item.name}</div>
-  {/each}
-</section> -->
 
 <script lang="ts">
-  // import "../styles/app.css";
-  // import {draggable, dropzone} from "$lib/dnd"
   import {dndzone} from 'svelte-dnd-action';
-  export let data
-  // import './global.css';
   import {flip} from "svelte/animate";
   let title: string;
   let location: string;
@@ -272,19 +215,19 @@ function handleDndConsider(cid, e) {
         columnItems[colIdx].items = e.detail.items;
         columnItems = [...columnItems];
 	}
-	function handleDndFinalize(cid, e) {
-		const colIdx = columnItems.findIndex(c => c.id === cid);
-        columnItems[colIdx].items = e.detail.items;
-        columnItems = [...columnItems];
-	}
+
+function handleDndFinalize(cid, e) {
+  const colIdx = columnItems.findIndex(c => c.id === cid);
+      columnItems[colIdx].items = e.detail.items;
+      columnItems = [...columnItems];
+}
 
 function handleClick(e) {
-        alert('dragabble elements are still clickable :)');
-    }
+  alert('dragabble elements are still clickable :)');
+}
 
 const id = () => Math.random()
 
-// let items = [];
 
 function add(name: string, location, cost, depends, constraints) {
   let newItem = {
@@ -306,7 +249,6 @@ function add(name: string, location, cost, depends, constraints) {
 
 const remove = (item) => {
   items = items.filter((value) => value.id !== item.id);
-  
 };
 
 function handleOnSubmit() {
