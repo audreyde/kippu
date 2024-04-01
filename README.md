@@ -1,4 +1,4 @@
-A simple travel planning tool
+kippu: a simple travel planning tool.
 
 ## Installation
 `git clone git@github.com:audreyde/kippu.git`
@@ -12,5 +12,5 @@ Recently I was planning a trip to Taiwan. It would be my first time planning a t
 Additionally, this project presents me with an opportunity to learn Svelte, as well as practice making an interactive webpage. In the future, I hope to leverage an LLM to provide travel recommendations and optimize itineraries.
 
 ## Tech
-- (TypeScript)[https://www.typescriptlang.org/] + (Svelte)[https://svelte.dev/]
-- (Vite)[https://vitejs.dev/]
+- [TypeScript](https://www.typescriptlang.org/) + [Svelte](https://svelte.dev/)
+- [Vite](https://vitejs.dev/)
