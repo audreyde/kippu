@@ -7,7 +7,7 @@
 <style>
   .remove { cursor: pointer; position: absolute; right: 5px; top: 3px; }
   :global(body) {
-    background-color: #f3e7e8;
+    background-color: #d5dbcc;
   }
 
   .grid-container { 
@@ -19,6 +19,7 @@
     margin: 0px 5px 0px 0px;
     padding-left: 5px;
     font-family: Arial, Helvetica, sans-serif;
+    color: #faf2eb;
   }
 
   p {
@@ -43,13 +44,13 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
      border-radius: 20px;
-     color: #f3a732;
+     color: #817a81;
      width: 264px;
      height: 30px;
      padding-left: 10px;
      margin: 10px;
      border-style: solid;
-     background: white;
+     background: #faf2eb;
      border: none;
      cursor: pointer;
   }
@@ -60,7 +61,7 @@
   }
   
   .card {
-    background-color: #f3a732;
+    background-color: #faf2eb;
     border-width: 2px;
     border-color: black;
     min-height: 10px;
@@ -79,6 +80,7 @@
         /*Notice we make sure this container doesn't scroll so that the title stays on top and the dndzone inside is scrollable*/
         overflow-y: hidden;
         border-color: None;
+        
     }
   .column-content {
         height: 100%;

@@ -3,7 +3,6 @@ kippu: a simple travel planning tool.
 ## Preview
 <img width="1502" alt="Screenshot 2024-04-01 at 9 38 33 AM" src="https://github.com/audreyde/kippu/assets/59377458/3b5448d8-609b-43a7-8709-a52198f8ebce">
 
-
 ## Installation
 `git clone git@github.com:audreyde/kippu.git`
 
