@@ -38,6 +38,7 @@
      padding-left: 10px;
      margin: 10px;
      flex-direction: column;
+     box-shadow: -10px -10px 10px 0 #FFFFFF, 70% 10px 10px 0px 0 #AEAEC0 20%
   }
 
   button {
@@ -69,6 +70,7 @@
     margin: 10px;
     border-radius: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    box-shadow: -10px -10px 30px 0 #FFFFFF 10px 10px 30px 0 #AEAEC0 40%
   }
   
   .column {
@@ -163,7 +165,7 @@
     {#each columnItems as column (column.id)}
         <div class="column">
             <h3 class="column-title">{column.name}</h3>
-            <div class="column-content" use:dndzone={{items:column.items, flipDurationMs}}
+            <div class="column-content" use:dndzone={{items:column.items, flipDurationMs, dropTargetStyle}}
                  on:consider={(e) => handleDndConsider(column.id, e)} on:finalize={(e) => handleDndFinalize(column.id, e)}>
                 {#each column.items as item (item.id)}
                     <div class="card" animate:flip="{{duration: flipDurationMs}}" on:click={handleClick}>
@@ -214,9 +216,14 @@
 const flipDurationMs = 300;
 function handleDndConsider(cid, e) {
   const colIdx = columnItems.findIndex(c => c.id === cid);
+
         columnItems[colIdx].items = e.detail.items;
         columnItems = [...columnItems];
 	}
+  let dropTargetStyle;
+  dropTargetStyle = {
+			
+		};
 
 function handleDndFinalize(cid, e) {
   const colIdx = columnItems.findIndex(c => c.id === cid);
