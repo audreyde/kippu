@@ -93,6 +93,17 @@
 
   div {
     font-family: Arial, Helvetica, sans-serif;
+    
+  }
+
+  .board {
+    /* width: auto;
+    height:500px;
+    border: 13px solid #bed5cd;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    white-space: nowrap; */
+    display: flex;
   }
 
   .column-title {
@@ -106,6 +117,14 @@
   .column-content:global(.hovered) {
     border-color: transparent;
   }
+
+  .addDay {
+    height: 90%;
+    width: 90%;
+    font-size: 50px;
+  }
+
+  
 
 </style>
 
@@ -161,7 +180,7 @@
       <button>Add</button>
     </form>
   </div>
-  <section class="board">
+  <section class="board flex-row">
     {#each columnItems as column (column.id)}
         <div class="column">
             <h3 class="column-title">{column.name}</h3>
@@ -175,8 +194,12 @@
             </div>
         </div>
     {/each}
+    <div class="column">
+      <button class="addDay" on:click={addColumn}>+</button>
+    </div>
 </section>
 </div>  
+
 
 <script lang="ts">
   import {dndzone} from 'svelte-dnd-action';
@@ -186,6 +209,7 @@
   let cost: number;
   let depends: JSON;
   let constraints: JSON;
+  let maxDay = 3
 
   let columnItems = [
 		{
@@ -265,6 +289,18 @@ function add(name: string, location, cost, depends, constraints) {
     columnItems = [...columnItems];
   }
 } 
+
+function addColumn() {
+  maxDay += 1
+  let newCol = {
+			id: maxDay,
+			name: "Day " + maxDay,
+			items: []
+	}
+  columnItems.push(newCol);
+  columnItems = [...columnItems];
+  
+}
 
 const remove = (item) => {
   items = items.filter((value) => value.id !== item.id);
